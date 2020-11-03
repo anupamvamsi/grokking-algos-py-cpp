@@ -7,11 +7,13 @@
 # Link to the video: https://www.youtube.com/watch?v=8lhxIOAfDss
 def move(f, t):
     print("Moving from {} to {}.".format(f, t))
+   
             
 # move("A", "B")
 def moveVia(f, v, t):
     move(f, v)
     move(v, t)
+
 
 def hanoi(n, f, h, t):
     if n == 0:
