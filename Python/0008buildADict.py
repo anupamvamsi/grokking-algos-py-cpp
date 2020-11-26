@@ -4,7 +4,7 @@
 ################################################
 
 1. https://coderbook.com/@marcus/how-to-create-a-hash-table-from-scratch-in-python/
-2. https://codereview.stackexchange.com/questions/69437/make-a-queuet-class-from-scratch-in-python
+2. https://codereview.stackexchange.com/questions/69437/make-a-dict-class-from-scratch-in-python
 3. https://stackoverflow.com/questions/240178/list-of-lists-changes-reflected-across-sublists-unexpectedly/240205#240205
 
 
@@ -39,12 +39,12 @@ self.array [
 
 
 ################################################
-# BUILDING THE queueTIONARY
+# BUILDING THE DICTIONARY
 ################################################
 
 class HashTable(object):
 
-    # queueTIONARY INITIALIZER
+    # DICTIONARY INITIALIZER
     def __init__(self, length=4):
         self.array = [None] * length    # Vs. " [[] for _ in range(size)] "?
     
@@ -72,8 +72,8 @@ class HashTable(object):
         return False
 
     
-    # CHECK IF queueTIONARY IS FULL
-    def isqueuetFull(self):
+    # CHECK IF DICTIONARY IS FULL
+    def isDictFull(self):
         numItems = 0
 
         for item in self.array:
@@ -82,14 +82,14 @@ class HashTable(object):
         
         resizeIt = float(numItems / len(self.array))
 
-        # 0.7 is the threshold to decide to double the queuetionary
+        # 0.7 is the threshold to decide to double the dictionary
         return resizeIt >= 0.7 
 
     
-    # RESIZE, RE-ADD ELEMENTS IN queueT IF queueT OCCUPANCY >= 0.7
-    def queuetDoubler(self):
+    # RESIZE, RE-ADD ELEMENTS IN DICT IF DICT OCCUPANCY >= 0.7
+    def dictDoubler(self):
 
-        # This step re-initializes the queuetionary to all none values as its elements
+        # This step re-initializes the dictionary to all none values as its elements
         resized_HT = HashTable(length=len(self.array) * 2)
 
         # Re-adding
@@ -118,8 +118,8 @@ class HashTable(object):
     # A KEY: VALUE PAIR IS PASSED TO BE UPDATED, OR ADDED IF MISSING
     def add(self, key, value):
 
-        if self.isqueuetFull():
-            self.queuetDoubler()
+        if self.isDictFull():
+            self.dictDoubler()
 
         index = self.hash(key)
 
