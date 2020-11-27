@@ -132,7 +132,7 @@ class HashTable(object):
 
                 # Check if key exists among the tuples in the nested array being accessed
                 if kvp[0] == key:   
-                    key[1] == value # if yes, update the value of the key
+                    kvp[1] = value # if yes, update the value of the key
                     break           # after updation, come out the for loop
 
             # If no, we will have to store the [new] key in the nested array being accessed.
@@ -166,10 +166,14 @@ class HashTable(object):
 
 queue = HashTable()
 
+queue[12] = 1
+queue['a'] = 144
 queue["person"] = '9'
 
 print(queue['person'])
 
+queue['person'] = '112322'
+
 if "person" in queue:
     print("Phew!")
-    print(type(queue["person"]))
+    print(queue['person'], type(queue["person"]))
