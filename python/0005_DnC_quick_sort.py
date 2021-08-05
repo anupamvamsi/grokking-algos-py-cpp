@@ -1,21 +1,23 @@
-def quickSort(array):   # Sorting by using the MID element as a pivot (is faster to check)
-    if len(array) < 2:  # Empty array or array with only one element 
-        return array
-    else:
-        mid = int((len(array) - 1) / 2)
-        pivot = array[mid]
-        lesser = [i for i in array[0:mid] + array[mid+1:] if i <= pivot]
-        greater = [i for i in array[0:mid] + array[mid+1:] if i > pivot]
-        
-        return quickSort(lesser) + [pivot] + quickSort(greater)
-
-
 # To generate sample input arrays
 import random
 
+
+def quickSort(array):   # Sorting by using the MID element as a pivot (is faster to check)
+    if len(array) < 2:  # Empty array or array with only one element
+        return array
+    else:
+        rIdx = random.randint(0, len(array) - 1)
+        # print(rIdx)
+        pivot = array[rIdx]
+        lesser = [i for i in array[0:rIdx] + array[rIdx+1:] if i <= pivot]
+        greater = [i for i in array[0:rIdx] + array[rIdx+1:] if i > pivot]
+
+        return quickSort(lesser) + [pivot] + quickSort(greater)
+
+
 array = []
-for i in range(30): # number of numbers
-    array.append(random.randint(-8000, 8000)) # start and end limits
+for i in range(30):  # number of numbers
+    array.append(random.randint(-800, 800))  # start and end limits
 
 print("\n")
 print("UNSORTED LIST:")
@@ -29,13 +31,13 @@ print("\n")
 
 
 # def quickSort(array):   # Sorting by using the FIRST element as a pivot
-#     if len(array) < 2:  # Empty array or array with only one element 
+#     if len(array) < 2:  # Empty array or array with only one element
 #         return array
 #     else:
 #         pivot = array[0]
 #         lesser = [i for i in array[1:] if i <= pivot]
 #         greater = [i for i in array[1:] if i > pivot]
-        
+
 #         return quickSort(lesser) + [pivot] + quickSort(greater)
 
 

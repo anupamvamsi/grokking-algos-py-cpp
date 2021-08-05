@@ -42,7 +42,8 @@ class LinkedList(object):
                 count += 1
                 if element is None:
                     break
-            return element # if (element is not None) else (f"Position {pos} does not exist.") # conditional expression
+            # if (element is not None) else (f"Position {pos} does not exist.") # conditional expression
+            return element
         # else:
         #     return None
         return None
@@ -51,7 +52,7 @@ class LinkedList(object):
         current = self.head
         new_element = Element(new_element)
         count = 1
-        
+
         if pos == 1:
             new_element.next = current
             self.head = new_element
@@ -86,19 +87,33 @@ lnk_lst = LinkedList(e1)
 lnk_lst.append(e2)
 lnk_lst.append(e3)
 
-print(lnk_lst)
+print(
+    f"\nLinked List {lnk_lst} has been created with members {e1.value}, {e2.value}, {e3.value}.")
 
 lnk_lst.insert(277, 4)
-print(lnk_lst)
+print(f"Inserting a number. Now the list is {lnk_lst}")
 
-lnk_lst.insert(-663, 2)
-print(lnk_lst)
+lnk_lst.insert(-663, 1)
+print(f"Inserting a number. Now the list is {lnk_lst}")
 
 lnk_lst.insert(1852, 5)
-print(lnk_lst)
+print(f"Inserting a number. Now the list is {lnk_lst}")
 
 lnk_lst.delete(277)
-print(lnk_lst)
+print(f"Deleting a number. Now the list is {lnk_lst}")
+
+lnk_lst.delete(-35)
+print(f"Deleting a number. Now the list is {lnk_lst}")
+
+a = (isinstance(lnk_lst.get_pos(45), int))
+print(a)
+
+if (lnk_lst.get_pos(45) is None):
+    print("YEAH")
+
+print(lnk_lst.get_pos(4).value)
+
+print(lnk_lst.get_pos(2).value)
 
 '''
 # Experiments
@@ -119,10 +134,7 @@ print(lnk_lst)
 # print("blah")
 # lnk_lst.printLinkedList()
 
-# a = not(isinstance(lnk_lst.get_pos(45), str))
-# print(a)
 
-# print(lnk_lst.get_pos(2).value)
 
 # if e3:  # Object is always true
 #     print(1)

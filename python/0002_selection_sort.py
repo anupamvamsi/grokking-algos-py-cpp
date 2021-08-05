@@ -60,22 +60,22 @@ def selectSortAList(myList):
 selectSortAList(myList)
 
 
-def BinarySearch(List, item):
-    low = 0
-    high = len(List) - 1
+# def BinarySearch(List, item):
+#     low = 0
+#     high = len(List) - 1
 
-    while low <= high:
-        mid = int((low + high) / 2)
-        guess = List[mid]
+#     while low <= high:
+#         mid = int((low + high) / 2)
+#         guess = List[mid]
 
-        if item == guess:
-            return mid
-        elif item > guess:
-            low = mid + 1
-        elif item < guess:
-            high = mid - 1
-    return None
+#         if item == guess:
+#             return mid
+#         elif item > guess:
+#             low = mid + 1
+#         elif item < guess:
+#             high = mid - 1
+#     return None
 
 
-print(BinarySearch(newList, 9))
-print(BinarySearch(newList, -1))
+# print(BinarySearch(newList, 9))
+# print(BinarySearch(newList, -1))

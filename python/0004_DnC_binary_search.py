@@ -15,11 +15,13 @@ Explanation of the algorithm:
 # Sample input  : 3 5 9 13 14 22
 
 
-def dividePlot(length, breadth):
+def dividePlot(length, breadth, count=1):
     if breadth == 0:
         return length
     else:
-        return dividePlot(breadth, (length % breadth))
+        print(
+            f"Length: {breadth}, Breadth: {length % breadth}, Count: {count}")
+        return dividePlot(breadth, (length % breadth), count+1)
 
 
 def binSearchDnC(low, high, array, item):
@@ -27,7 +29,7 @@ def binSearchDnC(low, high, array, item):
     guess = array[mid]
 
     if high >= low:
-        if  guess == item:
+        if guess == item:
             return mid
         elif guess < item:
             return binSearchDnC(mid + 1, high, array, item)
@@ -38,13 +40,13 @@ def binSearchDnC(low, high, array, item):
 
 
 def quickSort(array):
-    if len(array) < 2: # Empty array or array with only one element 
+    if len(array) < 2:  # Empty array or array with only one element
         return array
     else:
         pivot = array[0]
         lesser = [i for i in array[1:] if i <= pivot]
         greater = [i for i in array[1:] if i > pivot]
-        
+
         return quickSort(lesser) + [pivot] + quickSort(greater)
 
 
@@ -53,31 +55,32 @@ if __name__ == "__main__":
     divi = "dividePlotexe"
     bins = "binSearchDnCexe"
 
-    inp = input("Enter:\n'divi' if you want to divide a plot\n'bins' if you want to search for an item in an array:\n")
+    inp = input(
+        "Enter:\n'divi' if you want to divide a plot\n'bins' if you want to search for an item in an array:\n")
     print("\n")
 
-
     def dividePlotexe(l, b):
-        print(f'The plot of {l} x {b} can be divided into is a square with side = {dividePlot(l, b)}')
+        sideOfSquare = dividePlot(l, b)
+        print(
+            f'The plot of {l} x {b} can be divided into {(l * b) / (sideOfSquare * sideOfSquare)} square(s) with side = {sideOfSquare}')
 
-    
     def binSearchDnCexe(low, high, array, item):
         if binSearchDnC(low, high, array, item) == None:
             print(f"{item} not found in array {array}!")
         else:
-            print(f'{item} is located at index {binSearchDnC(low, high, array, item)} in {array}.')
-
+            print(
+                f'{item} is located at index {binSearchDnC(low, high, array, item)} in {array}.')
 
     fname = globals()[inp]      # Convert string to function call1
     func = globals()[fname]     # Convert string to function call2
-    
+
     if inp == 'divi':
         l = int(input('Enter length (> breadth) of plot: '))
         b = int(input('Enter breadth (< length) of plot: '))
         print("\n")
 
         func(l, b)
-    
+
     if inp == 'bins':
         array = list(map(int, input("Enter array: ").split()))
         if array == []:

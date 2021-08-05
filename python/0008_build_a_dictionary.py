@@ -47,46 +47,46 @@ class HashTable(object):
     # DICTIONARY INITIALIZER
     def __init__(self, length=4):
         self.array = [None] * length    # Vs. " [[] for _ in range(size)] "?
-    
 
     # ADDL. FN. 1
+
     def __setitem__(self, key, value):
         self.add(key, value)
 
-    
     # ADDL. FN. 2
+
     def __getitem__(self, key):
         return self.get(key)
 
-
     # ADDL. FN. 3
+
     def __contains__(self, key):
         index = self.hash(key)
-        
+
         if self.array[index] is not None:
 
             for kvp in self.array[index]:
                 if kvp[0] == key:
                     return True
-        
+
         return False
 
-    
     # CHECK IF DICTIONARY IS FULL
+
     def isDictFull(self):
         numItems = 0
 
         for item in self.array:
             if item is not None:
                 numItems += 1
-        
+
         resizeIt = float(numItems / len(self.array))
 
         # 0.7 is the threshold to decide to double the dictionary
-        return resizeIt >= 0.7 
+        return resizeIt >= 0.7
 
-    
     # RESIZE, RE-ADD ELEMENTS IN DICT IF DICT OCCUPANCY >= 0.7
+
     def dictDoubler(self):
 
         # This step re-initializes the dictionary to all none values as its elements
@@ -98,24 +98,23 @@ class HashTable(object):
             # For re-adding
             if self.array[index] is None:
                 continue
-            
+
             # Re-adding all values
             for kvp in self.array[index]:
                 resized_HT.add(kvp[0], kvp[1])
-        
+
         # Replace original self.array before resizing with resized self.array
         self.array = resized_HT.array
 
-    
     # GET THE INDEX FOR A SPECIFIC STRING IN ARRAY
-    def hash(self, key):            
+    def hash(self, key):
         length = len(self.array)
 
         # Returns integer within the len of array
-        return hash(key) % length   
-    
-    
+        return hash(key) % length
+
     # A KEY: VALUE PAIR IS PASSED TO BE UPDATED, OR ADDED IF MISSING
+
     def add(self, key, value):
 
         if self.isDictFull():
@@ -124,42 +123,43 @@ class HashTable(object):
         index = self.hash(key)
 
         # If position *index* in self.array is not empty
-        if self.array[index] is not None: 
+        if self.array[index] is not None:
 
             # Check if the key being called exists in the nested array being accessed
             # If yes, we will have to udpate the [old] key being called. for that:
             for kvp in self.array[index]:
 
                 # Check if key exists among the tuples in the nested array being accessed
-                if kvp[0] == key:   
-                    kvp[1] = value # if yes, update the value of the key
+                if kvp[0] == key:
+                    kvp[1] = value  # if yes, update the value of the key
                     break           # after updation, come out the for loop
 
             # If no, we will have to store the [new] key in the nested array being accessed.
             # If the for loop expires without breaking:
-            else:   
-                self.array[index].append([key, value]) # can be appended as (key, value) as well
-        
-        # If position *index* is empty in self.array
-        else: 
-            self.array[index] = []
-            self.array[index].append([key, value]) # can use (key, value) as well
+            else:
+                # can be appended as (key, value) as well
+                self.array[index].append([key, value])
 
-    
+        # If position *index* is empty in self.array
+        else:
+            self.array[index] = []
+            # can use (key, value) as well
+            self.array[index].append([key, value])
+
     # RETRIEVE VALUE WHEN A KEY IS INPUT
-    def get(self, key): 
+    def get(self, key):
         index = self.hash(key)
 
         # Key: value pair doesn't exist
         if self.array[index] is None:
             raise KeyError()
-        
+
         # Key: value pair exists
         else:
             for kvp in self.array[index]:
                 if key == kvp[0]:
                     return kvp[1]
-            
+
             # If key not found
             raise KeyError()
 
@@ -168,8 +168,10 @@ queue = HashTable()
 
 queue[12] = 1
 queue['a'] = 144
+queue.add(14, 22)
 queue["person"] = '9'
 
+print(queue.get(14))
 print(queue['person'])
 
 queue['person'] = '112322'
